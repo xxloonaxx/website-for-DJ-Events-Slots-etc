@@ -56,3 +56,14 @@ Erstelle sie lokal bei Bedarf:
 ```bash
 zip -r dj-slot-system.zip . -x ".git/*" "*.zip"
 ```
+
+
+## Troubleshooting: HTTP ERROR 500
+
+Wenn die komplette Seite mit **HTTP ERROR 500** ausfällt, sind fast immer diese Punkte die Ursache:
+
+1. `config.php` enthält falsche DB-Zugangsdaten
+2. Die Datenbank wurde noch nicht mit `sql/schema.sql` importiert
+3. PHP-Erweiterung `pdo_mysql` ist auf dem Server nicht aktiv
+
+Ab dieser Version zeigt die App bei DB-Problemen eine verständliche Systemseite statt eines generischen 500-Fehlers.
