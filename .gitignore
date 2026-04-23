@@ -1,0 +1,6 @@
+# Build artifacts
+*.zip
+
+# Optional runtime uploads
+uploads/*
+!uploads/.gitkeep
