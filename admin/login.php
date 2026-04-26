@@ -4,7 +4,7 @@ require __DIR__ . '/../includes/layout.php';
 require __DIR__ . '/../includes/auth.php';
 
 if (is_admin_logged_in()) {
-    header('Location: ' . app_url('admin/events.php'));
+    header('Location: ' . app_url('admin/dashboard.php'));
     exit;
 }
 

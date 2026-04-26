@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS events (
     banner_path VARCHAR(255) NULL,
     is_published TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_event_name_date (name, event_date)
 );
 
 CREATE TABLE IF NOT EXISTS event_slots (
@@ -35,6 +36,15 @@ CREATE TABLE IF NOT EXISTS dj_access_codes (
     expires_at DATETIME NULL,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS event_access_code_map (
+    event_id INT NOT NULL,
+    access_code_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (event_id, access_code_id),
+    CONSTRAINT fk_eacm_event FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+    CONSTRAINT fk_eacm_code FOREIGN KEY (access_code_id) REFERENCES dj_access_codes(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS dj_bookings (

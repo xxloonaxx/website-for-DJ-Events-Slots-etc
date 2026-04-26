@@ -34,7 +34,13 @@ if (isset($_GET['toggle'])) {
     exit;
 }
 
-$codes = db()->query('SELECT * FROM dj_access_codes ORDER BY created_at DESC')->fetchAll();
+$codes = db()->query(
+    'SELECT c.*, COUNT(m.event_id) AS linked_events
+     FROM dj_access_codes c
+     LEFT JOIN event_access_code_map m ON m.access_code_id = c.id
+     GROUP BY c.id
+     ORDER BY c.created_at DESC'
+)->fetchAll();
 
 render_header('DJ Access-Codes', 'admin');
 ?>
@@ -63,7 +69,7 @@ render_header('DJ Access-Codes', 'admin');
 
     <div class="table-wrap card">
         <table>
-            <thead><tr><th>Code</th><th>Label</th><th>Ablauf</th><th>Status</th><th>URL</th><th></th></tr></thead>
+            <thead><tr><th>Code</th><th>Label</th><th>Ablauf</th><th>Status</th><th>Verknüpfte Events</th><th>URL</th><th></th></tr></thead>
             <tbody>
             <?php foreach ($codes as $code): ?>
                 <tr>
@@ -71,6 +77,7 @@ render_header('DJ Access-Codes', 'admin');
                     <td><?= h($code['label']) ?></td>
                     <td><?= h($code['expires_at'] ?: '-') ?></td>
                     <td><?= $code['is_active'] ? 'Aktiv' : 'Inaktiv' ?></td>
+                    <td><?= h((string) $code['linked_events']) ?></td>
                     <td><code><?= h(app_url('dj/index.php?code=' . urlencode($code['code']))) ?></code></td>
                     <td><a href="<?= h(app_url('admin/access_codes.php?toggle=' . $code['id'])) ?>">Umschalten</a></td>
                 </tr>
