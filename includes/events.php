@@ -356,6 +356,11 @@ function get_admin_stats(): array
     $stats['slots_total'] = (int) db()->query('SELECT COUNT(*) FROM event_slots')->fetchColumn();
     $stats['slots_booked'] = (int) db()->query('SELECT COUNT(*) FROM dj_bookings')->fetchColumn();
     $stats['slots_free'] = max(0, $stats['slots_total'] - $stats['slots_booked']);
+    try {
+        $stats['admin_users'] = (int) db()->query('SELECT COUNT(*) FROM admin_users')->fetchColumn();
+    } catch (Throwable $e) {
+        $stats['admin_users'] = 0;
+    }
 
     return $stats;
 }

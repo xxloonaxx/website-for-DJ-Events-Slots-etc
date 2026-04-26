@@ -18,6 +18,7 @@ render_header('Admin Dashboard', 'dashboard');
         <div class="card kpi"><span class="num"><?= h((string) $stats['events_upcoming']) ?></span><span>Bevorstehende Events</span></div>
         <div class="card kpi"><span class="num"><?= h((string) $stats['slots_booked']) ?></span><span>Gebuchte Slots</span></div>
         <div class="card kpi"><span class="num"><?= h((string) $stats['slots_free']) ?></span><span>Freie Slots</span></div>
+        <div class="card kpi"><span class="num"><?= h((string) $stats['admin_users']) ?></span><span>Admin-Benutzer</span></div>
     </section>
 
     <section class="card">
@@ -26,6 +27,7 @@ render_header('Admin Dashboard', 'dashboard');
             <a class="button" href="<?= h(app_url('admin/event_form.php')) ?>">Neues Event</a>
             <a class="button secondary" href="<?= h(app_url('admin/events.php')) ?>">Events</a>
             <a class="button secondary" href="<?= h(app_url('admin/access_codes.php')) ?>">Codes</a>
+            <a class="button secondary" href="<?= h(app_url('admin/users.php')) ?>">Benutzer</a>
             <a class="button secondary" href="<?= h(app_url('index.php')) ?>">Homepage</a>
         </p>
     </section>

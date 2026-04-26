@@ -36,6 +36,7 @@ render_header('Admin - Events verwalten', 'admin');
             <a class="button" href="<?= h(app_url('admin/event_form.php')) ?>">Neues Event</a>
             <a class="button secondary" href="<?= h(app_url('admin/dashboard.php')) ?>">Dashboard</a>
             <a class="button secondary" href="<?= h(app_url('admin/access_codes.php')) ?>">DJ Access-Codes</a>
+            <a class="button secondary" href="<?= h(app_url('admin/users.php')) ?>">Benutzer</a>
             <a class="button secondary" href="<?= h(app_url('index.php')) ?>">Homepage</a>
         </div>
     </div>

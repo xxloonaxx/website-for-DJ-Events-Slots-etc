@@ -14,6 +14,8 @@ Internes System für:
 - Banner-System mit Datei-Upload (`jpg/jpeg/png/webp/gif`)
 - Eingeloggte Admins können auf der DJ-Seite bestehende Buchungen bearbeiten/löschen
 - Schutz vor Duplikat-Events (Name + Datum)
+- **Mehrere Admin-Benutzer** mit Benutzerverwaltung
+- **Passwörter werden gehasht** (`password_hash` / `password_verify`)
 
 ## Installation
 
@@ -23,19 +25,21 @@ Internes System für:
    ```
 2. `config.php` anpassen:
    - DB Zugangsdaten
-   - `admin_password` **sofort ändern**
+   - `default_admin_username` und `default_admin_password` setzen
    - optional `base_url`
 3. Schreibrechte für Uploads setzen:
    ```bash
    mkdir -p uploads/banners
    chmod -R 775 uploads
    ```
+4. Einmal in `/admin/login.php` einloggen. Der erste Admin aus `config.php` wird automatisch angelegt, falls noch kein Benutzer existiert.
 
 ## Wichtige URLs
 
 - Startseite: `/index.php`
 - Admin Login: `/admin/login.php`
 - Admin Dashboard: `/admin/dashboard.php`
+- Admin Benutzerverwaltung: `/admin/users.php`
 - DJ Zugang: `/dj/index.php?code=DEINCODE`
 
 ## ZIP-Datei

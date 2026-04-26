@@ -12,7 +12,9 @@ return [
         'name' => 'VRChat DJ Slot System',
         'base_url' => '',
         'timezone' => 'Europe/Berlin',
-        'admin_password' => 'BitteDirektNachInstallAendern!',
         'session_name' => 'dj_slot_admin',
+        // Nur für Erstinstallation: wird automatisch gehasht in admin_users gespeichert.
+        'default_admin_username' => 'admin',
+        'default_admin_password' => 'BitteSofortAendern123!',
     ],
 ];
